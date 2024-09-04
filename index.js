@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Specify the configuration items and data for the chart
   var barChart = echarts.init(
-    document.getElementById("main"),
+    document.getElementById("barChart"),
     globalChartOptions
   );
 
   var barChartOption = {
+    toolbox: {
+      ...globalChartOptions.toolbox,
+    },
     title: {
       text: "Bar graph",
-    },
-    legend: {
-      data: ["farms", "your farm"],
     },
     xAxis: {
       name: "Type of shirt",
@@ -26,18 +26,26 @@ document.addEventListener("DOMContentLoaded", function () {
         name: "sales",
         type: "bar",
         data: [
-          5,
-          10,
           {
-            value: 200,
+            name: "my farm",
+            value: 20,
             itemStyle: {
               color: colors.currentFarm,
             },
           },
+          5,
+          10,
           36,
           10,
           10,
           20,
+          {
+            name: "my farm",
+            value: 20,
+            itemStyle: {
+              color: colors.currentFarm,
+            },
+          },
         ],
       },
     ],
@@ -55,6 +63,9 @@ document.addEventListener("DOMContentLoaded", function () {
     globalChartOptions
   );
   const chartOption = {
+    toolbox: {
+      ...globalChartOptions.toolbox,
+    },
     title: {
       text: "Scatter Plot",
     },
@@ -67,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       name: "X Axis",
     },
+
     yAxis: {
       ...globalChartOptions.yAxis,
       splitLine: {
@@ -78,14 +90,14 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     series: [
       {
-        symbolSize: 10,
+        symbolSize: 16,
         symbol: "square",
         data: [[10.0, 8.04]],
         color: colors.currentFarm,
         type: "scatter",
       },
       {
-        symbolSize: 10,
+        symbolSize: 16,
         symbol: "square",
         data: [
           [8.07, 6.95],
@@ -117,9 +129,12 @@ document.addEventListener("DOMContentLoaded", function () {
   myChartScatter.setOption(chartOption);
   // ⚡️⚡️⚡️⚡️ box PLOT EXAMPLE ⚡️⚡️⚡️⚡️
   const boxoption = {
+    toolbox: {
+      ...globalChartOptions.toolbox,
+    },
     title: [
       {
-        text: "Michelson-Morley Experiment",
+        text: "Box plot",
       },
     ],
     dataset: [
@@ -151,21 +166,15 @@ document.addEventListener("DOMContentLoaded", function () {
         type: "shadow",
       },
     },
-    grid: {
-      left: "10%",
-      right: "10%",
-      bottom: "15%",
-    },
     xAxis: {
       ...globalChartOptions.xAxis,
       type: "category",
-      boundaryGap: true,
-      nameGap: 30,
+      name: "X axis",
     },
     yAxis: {
       ...globalChartOptions.yAxis,
       type: "value",
-      name: "km/s minus 299,000",
+      name: "Y axis",
     },
     series: [
       {
@@ -177,6 +186,26 @@ document.addEventListener("DOMContentLoaded", function () {
         type: "boxplot",
         datasetIndex: 1,
       },
+      {
+        name: "Average",
+        type: "scatter",
+        symbol: "line",
+        datasetIndex: 1,
+        symbolSize: 60,
+        itemStyle: {
+          color: "#17CA9B",
+        },
+      },
+      {
+        name: "Current Farm",
+        type: "scatter",
+        datasetIndex: 1,
+        symbolSize: 10,
+        symbol: "square",
+        itemStyle: {
+          color: colors.currentFarm,
+        },
+      },
     ],
   };
   var boxPlot = echarts.init(
@@ -186,6 +215,9 @@ document.addEventListener("DOMContentLoaded", function () {
   boxPlot.setOption(boxoption);
 
   const lineOption = {
+    toolbox: {
+      ...globalChartOptions.toolbox,
+    },
     title: {
       text: "Stacked Line",
     },
@@ -194,17 +226,6 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     legend: {
       data: ["Email", "Union Ads", "Video Ads"],
-    },
-    grid: {
-      left: "3%",
-      right: "4%",
-      bottom: "3%",
-      containLabel: true,
-    },
-    toolbox: {
-      feature: {
-        saveAsImage: {},
-      },
     },
     xAxis: {
       ...globalChartOptions.xAxis,
@@ -224,25 +245,21 @@ document.addEventListener("DOMContentLoaded", function () {
         type: "line",
         symbol: "square",
         symbolSize: 10,
-        stack: "Total",
-        data: [120, 132, 101, 134, 90, 230, 210],
+        data: [12, 32, 11, 14, 9, 23, 21],
       },
       {
         name: "Union Ads",
         symbol: "square",
         symbolSize: 10,
         type: "line",
-        stack: "Total",
-        data: [220, 182, 191, 234, 290, 330, 310],
+        data: [22, 12, 19, 24, 29, 33, 31],
       },
       {
         name: "Video Ads",
         symbol: "square",
         symbolSize: 10,
-
         type: "line",
-        stack: "Total",
-        data: [150, 232, 201, 154, 190, 330, 410],
+        data: [15, 22, 21, 14, 19, 33, 41],
       },
     ],
   };
